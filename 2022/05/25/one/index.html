@@ -1,221 +1,640 @@
-<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>Spark基础配置 | LF的博客</title><meta name="author" content="LF的博客"><meta name="copyright" content="LF的博客"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="*一、配置基础环境*  #主机名  1cat &#x2F;etc&#x2F;hostname   # hosts映射 1vim &#x2F;etc&#x2F;hosts  1234567891011127.0.0.1  localhost localhost.localdomain localhost4 localhost4.localdomain4 ::1     localhost localhost.localdomain loc">
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+    <meta charset="utf-8">
+    
+    <title>Spark基础配置 | LF的博客</title>
+    
+    
+        <meta name="keywords" content="Spark基础配置" />
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="*一、配置基础环境*  #主机名  cat &#x2F;etc&#x2F;hostname   # hosts映射 vim &#x2F;etc&#x2F;hosts  127.0.0.1  localhost localhost.localdomain localhost4 localhost4.localdomain4   ::1     localhost localhost.localdom">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Spark基础配置">
 <meta property="og:url" content="http://example.com/2022/05/25/one/index.html">
 <meta property="og:site_name" content="LF的博客">
-<meta property="og:description" content="*一、配置基础环境*  #主机名  1cat &#x2F;etc&#x2F;hostname   # hosts映射 1vim &#x2F;etc&#x2F;hosts  1234567891011127.0.0.1  localhost localhost.localdomain localhost4 localhost4.localdomain4 ::1     localhost localhost.localdomain loc">
+<meta property="og:description" content="*一、配置基础环境*  #主机名  cat &#x2F;etc&#x2F;hostname   # hosts映射 vim &#x2F;etc&#x2F;hosts  127.0.0.1  localhost localhost.localdomain localhost4 localhost4.localdomain4   ::1     localhost localhost.localdom">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7">
+<meta property="og:image" content="http://example.com/2022/05/25/one/1.png">
+<meta property="og:image" content="http://example.com/2022/05/25/one/2.png">
+<meta property="og:image" content="http://example.com/2022/05/25/one/3.png">
+<meta property="og:image" content="http://example.com/2022/05/25/one/4.png">
+<meta property="og:image" content="http://example.com/2022/05/25/one/5.png">
+<meta property="og:image" content="http://example.com/2022/05/25/one/6.png">
+<meta property="og:image" content="http://example.com/2022/05/25/one/7.png">
+<meta property="og:image" content="http://example.com/2022/05/25/one/8.png">
 <meta property="article:published_time" content="2022-05-25T03:32:31.000Z">
 <meta property="article:modified_time" content="2022-05-29T05:05:46.472Z">
 <meta property="article:author" content="LF的博客">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/2022/05/25/one/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
-  root: '/',
-  algolia: undefined,
-  localSearch: undefined,
-  translate: undefined,
-  noticeOutdate: undefined,
-  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
-  copy: {
-    success: '复制成功',
-    error: '复制错误',
-    noSupport: '浏览器不支持'
-  },
-  relativeDate: {
-    homepage: false,
-    post: false
-  },
-  runtime: '',
-  date_suffix: {
-    just: '刚刚',
-    min: '分钟前',
-    hour: '小时前',
-    day: '天前',
-    month: '个月前'
-  },
-  copyright: undefined,
-  lightbox: 'fancybox',
-  Snackbar: undefined,
-  source: {
-    justifiedGallery: {
-      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.js',
-      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.css'
-    }
-  },
-  isPhotoFigcaption: false,
-  islazyload: false,
-  isAnchor: false
-}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
-  title: 'Spark基础配置',
-  isPost: true,
-  isHome: false,
-  isHighlightShrink: false,
-  isToc: false,
-  postUpdate: '2022-05-29 13:05:46'
-}</script><noscript><style type="text/css">
-  #nav {
-    opacity: 1
-  }
-  .justified-gallery img {
-    opacity: 1
-  }
-
-  #recent-posts time,
-  #post-meta time {
-    display: inline !important
-  }
-</style></noscript><script>(win=>{
-    win.saveToLocal = {
-      set: function setWithExpiry(key, value, ttl) {
-        if (ttl === 0) return
-        const now = new Date()
-        const expiryDay = ttl * 86400000
-        const item = {
-          value: value,
-          expiry: now.getTime() + expiryDay,
-        }
-        localStorage.setItem(key, JSON.stringify(item))
-      },
-
-      get: function getWithExpiry(key) {
-        const itemStr = localStorage.getItem(key)
-
-        if (!itemStr) {
-          return undefined
-        }
-        const item = JSON.parse(itemStr)
-        const now = new Date()
-
-        if (now.getTime() > item.expiry) {
-          localStorage.removeItem(key)
-          return undefined
-        }
-        return item.value
-      }
-    }
-  
-    win.getScript = url => new Promise((resolve, reject) => {
-      const script = document.createElement('script')
-      script.src = url
-      script.async = true
-      script.onerror = reject
-      script.onload = script.onreadystatechange = function() {
-        const loadState = this.readyState
-        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
-        script.onload = script.onreadystatechange = null
-        resolve()
-      }
-      document.head.appendChild(script)
-    })
-  
-      win.activateDarkMode = function () {
-        document.documentElement.setAttribute('data-theme', 'dark')
-        if (document.querySelector('meta[name="theme-color"]') !== null) {
-          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
-        }
-      }
-      win.activateLightMode = function () {
-        document.documentElement.setAttribute('data-theme', 'light')
-        if (document.querySelector('meta[name="theme-color"]') !== null) {
-          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
-        }
-      }
-      const t = saveToLocal.get('theme')
+<meta name="twitter:image" content="http://example.com/2022/05/25/one/1.png">
     
-          if (t === 'dark') activateDarkMode()
-          else if (t === 'light') activateLightMode()
+
+    
+        <link rel="alternate" href="/atom.xml" title="LF的博客" type="application/atom+xml" />
+    
+
+    
+        <link rel="icon" href="/favicon.ico" />
+    
+
+    
+<link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+
+    
+<link rel="stylesheet" href="/libs/open-sans/styles.css">
+
+    
+<link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+<script src="/libs/jquery/2.1.3/jquery.min.js"></script>
+
+    
+<script src="/libs/jquery/plugins/cookie/1.4.1/jquery.cookie.js"></script>
+
+    
+    
         
-      const asideStatus = saveToLocal.get('aside-status')
-      if (asideStatus !== undefined) {
-        if (asideStatus === 'hide') {
-          document.documentElement.classList.add('hide-aside')
-        } else {
-          document.documentElement.classList.remove('hide-aside')
-        }
-      }
+<link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+
     
-    const detectApple = () => {
-      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
-        document.documentElement.classList.add('apple')
-      }
-    }
-    detectApple()
-    })(window)</script><meta name="generator" content="Hexo 6.2.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">3</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><hr/></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">LF的博客</a></span><div id="menus"><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">Spark基础配置</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2022-05-25T03:32:31.000Z" title="发表于 2022-05-25 11:32:31">2022-05-25</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-05-29T05:05:46.472Z" title="更新于 2022-05-29 13:05:46">2022-05-29</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="Spark基础配置"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p><em><strong>*一、配置基础环境*</strong></em> </p>
+    
+        
+<link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+
+    
+    
+    
+    
+
+
+    
+        <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+<body>
+    <div id="container">
+        <header id="header">
+    <div id="header-main" class="header-inner">
+        <div class="outer">
+            <a href="/" id="logo">
+                <i class="logo"></i>
+                <span class="site-title">LF的博客</span>
+            </a>
+            <nav id="main-nav">
+                
+                    <a class="main-nav-link" href="/">首页</a>
+                
+                    <a class="main-nav-link" href="/archives">归档</a>
+                
+                    <a class="main-nav-link" href="/categories">分类</a>
+                
+                    <a class="main-nav-link" href="/tags">标签</a>
+                
+                    <a class="main-nav-link" href="/about">关于</a>
+                
+            </nav>
+            
+                
+                <nav id="sub-nav">
+                    <div class="profile" id="profile-nav">
+                        <a id="profile-anchor" href="javascript:;">
+                            <img class="avatar" src="https://www.gravatar.com/avatar/801b5fd632e95da59d6dbb8f45eff705" />
+                            <i class="fa fa-caret-down"></i>
+                        </a>
+                    </div>
+                </nav>
+            
+            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="搜索" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="想要查找什么..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+
+<script src="/js/insight.js"></script>
+
+
+</div>
+        </div>
+    </div>
+    <div id="main-nav-mobile" class="header-sub header-inner">
+        <table class="menu outer">
+            <tr>
+                
+                    <td><a class="main-nav-link" href="/">首页</a></td>
+                
+                    <td><a class="main-nav-link" href="/archives">归档</a></td>
+                
+                    <td><a class="main-nav-link" href="/categories">分类</a></td>
+                
+                    <td><a class="main-nav-link" href="/tags">标签</a></td>
+                
+                    <td><a class="main-nav-link" href="/about">关于</a></td>
+                
+                <td>
+                    
+    <div class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="搜索" />
+    </div>
+
+                </td>
+            </tr>
+        </table>
+    </div>
+</header>
+
+        <div class="outer">
+            
+                
+
+<aside id="profile">
+    <div class="inner profile-inner">
+        <div class="base-info profile-block">
+            <img id="avatar" src="https://www.gravatar.com/avatar/801b5fd632e95da59d6dbb8f45eff705?s=128" />
+            <h2 id="name">LF</h2>
+            <h3 id="title">Designer &amp; Programmer</h3>
+            <span id="location"><i class="fa fa-map-marker"></i>Haikou, China</span>
+            <a id="follow" target="_blank" href="https://github.com/woqunasha/">关注我</a>
+        </div>
+        <div class="article-info profile-block">
+            <div class="article-info-block">
+                3
+                <span>文章</span>
+            </div>
+            <div class="article-info-block">
+                0
+                <span>标签</span>
+            </div>
+        </div>
+        
+        <div class="profile-block social-links">
+            <table>
+                <tr>
+                    
+                    
+                    <td>
+                        <a href="https://github.com/woqunasha/woqunasha.github.io" target="_blank" title="github" class=tooltip>
+                            <i class="fa fa-github"></i>
+                        </a>
+                    </td>
+                    
+                    <td>
+                        <a href="http://stackoverflow.com/users/7277090/zthxxx?tab=profile" target="_blank" title="stack-overflow" class=tooltip>
+                            <i class="fa fa-stack-overflow"></i>
+                        </a>
+                    </td>
+                    
+                    <td>
+                        <a href="http://codepen.io/zthxxx/" target="_blank" title="codepen" class=tooltip>
+                            <i class="fa fa-codepen"></i>
+                        </a>
+                    </td>
+                    
+                    <td>
+                        <a href="/atom.xml" target="_blank" title="rss" class=tooltip>
+                            <i class="fa fa-rss"></i>
+                        </a>
+                    </td>
+                    
+                </tr>
+            </table>
+        </div>
+        
+    </div>
+</aside>
+
+            
+            
+                <aside id="sidebar">
+   
+        
+    
+    <div id="toTop" class="fa fa-angle-up"></div>
+</aside>
+            
+            <section id="main"><article id="post-one" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+            <header class="article-header">
+                
+                    <div class="article-meta">
+                        
+                        
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/2022/05/25/one/">
+            <time datetime="2022-05-25T03:32:31.000Z" itemprop="datePublished">2022-05-25</time>
+        </a>
+    </div>
+
+
+                        
+                            <i class="fa fa-bar-chart"></i>
+                            <span id="busuanzi_container_site_pv"><span id="busuanzi_value_page_pv"></span></span>    
+                        
+                        
+                            <div class="article-meta-button">
+                                <a target="_blank" rel="noopener" href='https://github.com/LF/Wiki-site/raw/writing/source/_posts/one.md'> Source </a>
+                            </div>
+                            <div class="article-meta-button">
+                                <a target="_blank" rel="noopener" href='https://github.com/LF/Wiki-site/edit/writing/source/_posts/one.md'> Edit </a>
+                            </div>
+                            <div class="article-meta-button">
+                                <a target="_blank" rel="noopener" href='https://github.com/LF/Wiki-site/commits/writing/source/_posts/one.md'> History </a>
+                            </div>
+                        
+                    </div>
+                
+                
+    
+        <h1 class="article-title" itemprop="name">
+            Spark基础配置
+        </h1>
+    
+
+            </header>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+        
+            
+                <div id="toc" class="toc-article">
+                <strong class="toc-title">文章目录</strong>
+                    
+                </div>
+            
+        
+        
+            <p><em><strong>*一、配置基础环境*</strong></em> </p>
 <p>#主机名 </p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat /etc/hostname</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-none"><code class="language-none">cat &#x2F;etc&#x2F;hostname<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <p> # hosts映射</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/hosts</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-none"><code class="language-none">vim &#x2F;etc&#x2F;hosts<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1  localhost localhost.localdomain localhost4 localhost4.localdomain4</span><br><span class="line"></span><br><span class="line"> ::1     localhost localhost.localdomain localhost6 localhost6.localdomain6</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line"> 192.168.88.151 node1.itcast.cn node1</span><br><span class="line"></span><br><span class="line"> 192.168.88.152 node2.itcast.cn node2</span><br><span class="line"></span><br><span class="line"> 192.168.88.153 node3.itcast.cn node3</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-none"><code class="language-none">127.0.0.1  localhost localhost.localdomain localhost4 localhost4.localdomain4
+
+ ::1     localhost localhost.localdomain localhost6 localhost6.localdomain6
+
+ 
+
+ 192.168.88.151 node1.itcast.cn node1
+
+ 192.168.88.152 node2.itcast.cn node2
+
+ 192.168.88.153 node3.itcast.cn node3<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p><em><strong>*二、安装配置jdk*</strong></em></p>
 <p>\1. 编译环境软件安装目录</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mkdir -p /export/server</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-none"><code class="language-none">mkdir -p &#x2F;export&#x2F;server<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <p>\2. 上传jdk-8u65-linux-x64.tar.gz到&#x2F;export&#x2F;server&#x2F;目录并解压</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">rz</span><br><span class="line"></span><br><span class="line">tar -zxvf jdk-8u65-linux-x64.tar.gz</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-none"><code class="language-none">rz
+
+tar -zxvf jdk-8u65-linux-x64.tar.gz<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 
 <p>\3. 配置环境变量</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/profile</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-none"><code class="language-none">vim &#x2F;etc&#x2F;profile<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">export JAVA_HOME=/export/server/jdk1.8.0_241</span><br><span class="line"></span><br><span class="line">export PATH=$PATH:$JAVA_HOME/bin</span><br><span class="line"></span><br><span class="line">export CLASSPATH=.:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-none"><code class="language-none">export JAVA_HOME&#x3D;&#x2F;export&#x2F;server&#x2F;jdk1.8.0_241
+
+export PATH&#x3D;$PATH:$JAVA_HOME&#x2F;bin
+
+export CLASSPATH&#x3D;.:$JAVA_HOME&#x2F;lib&#x2F;dt.jar:$JAVA_HOME&#x2F;lib&#x2F;tools.jar<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>\4. 重新加载环境变量文件</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">source /etc/profile</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-none"><code class="language-none">source &#x2F;etc&#x2F;profile<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <p>\5. 查看java版本号</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Java -version</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-none"><code class="language-none">Java -version<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <p><img src="/2022/05/25/one/1.png" alt="在这里插入图片描述"></p>
 <p>\6. 将java由node1分发到node2、node3</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">scp -r /export/server/jdk1.8.0_241/ root@node2:/export/server</span><br><span class="line"></span><br><span class="line">scp -r /export/server/jdk1.8.0_241/ root@node3:/export/server</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-none"><code class="language-none">scp -r &#x2F;export&#x2F;server&#x2F;jdk1.8.0_241&#x2F; root@node2:&#x2F;export&#x2F;server
+
+scp -r &#x2F;export&#x2F;server&#x2F;jdk1.8.0_241&#x2F; root@node3:&#x2F;export&#x2F;server<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 
 <p>\7. 配置node2、node3的环境变量文件（方法如上）</p>
 <p>\8. 在node1、node2、node3中创建软连接（三台都需要操作）</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cd /export/server/</span><br><span class="line"></span><br><span class="line">ln -s jdk1.8.0_241/ jdk</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-none"><code class="language-none">cd &#x2F;export&#x2F;server&#x2F;
+
+ln -s jdk1.8.0_241&#x2F; jdk<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 
 <p><em><strong>*三、Hadoop安装配置*</strong></em></p>
 <p>\1. 上传hadoop-3.3.0-Centos7-64-with-snappy.tar.gz 到 &#x2F;export&#x2F;server 并解压文件</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tar -zxvf hadoop-3.3.0-Centos7-64-with-snappy.tar.gz</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-none"><code class="language-none">tar -zxvf hadoop-3.3.0-Centos7-64-with-snappy.tar.gz<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <p>\2. 修改配置文件</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd /export/server/hadoop-3.3.0/etc/hadoop</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-none"><code class="language-none">cd &#x2F;export&#x2F;server&#x2F;hadoop-3.3.0&#x2F;etc&#x2F;hadoop<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <p>- hadoop-env.sh</p>
 <p>  #文件最后添加</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">export JAVA_HOME=/export/server/jdk1.8.0_241</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line"> export HDFS_NAMENODE_USER=root</span><br><span class="line"></span><br><span class="line"> export HDFS_DATANODE_USER=root</span><br><span class="line"></span><br><span class="line"> export HDFS_SECONDARYNAMENODE_USER=root</span><br><span class="line"></span><br><span class="line"> export YARN_RESOURCEMANAGER_USER=root</span><br><span class="line"></span><br><span class="line"> export YARN_NODEMANAGER_USER=root </span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-none"><code class="language-none">export JAVA_HOME&#x3D;&#x2F;export&#x2F;server&#x2F;jdk1.8.0_241
+
+ 
+
+ export HDFS_NAMENODE_USER&#x3D;root
+
+ export HDFS_DATANODE_USER&#x3D;root
+
+ export HDFS_SECONDARYNAMENODE_USER&#x3D;root
+
+ export YARN_RESOURCEMANAGER_USER&#x3D;root
+
+ export YARN_NODEMANAGER_USER&#x3D;root <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>- core-site.xml</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- 设置默认使用的文件系统 Hadoop支持file、HDFS、GFS、ali|Amazon云等文件系统 --&gt;</span><br><span class="line"></span><br><span class="line">  &lt;property&gt;</span><br><span class="line"></span><br><span class="line">	&lt;name&gt;fs.defaultFS&lt;/name&gt;</span><br><span class="line"></span><br><span class="line">	&lt;value&gt;hdfs://node1:8020&lt;/value&gt;</span><br><span class="line"></span><br><span class="line">  &lt;/property&gt;</span><br><span class="line"></span><br><span class="line">  </span><br><span class="line"></span><br><span class="line">  &lt;!-- 设置Hadoop本地保存数据路径 --&gt;</span><br><span class="line"></span><br><span class="line">  &lt;property&gt;</span><br><span class="line"></span><br><span class="line">	&lt;name&gt;hadoop.tmp.dir&lt;/name&gt;</span><br><span class="line"></span><br><span class="line">	&lt;value&gt;/export/data/hadoop-3.3.0&lt;/value&gt;</span><br><span class="line"></span><br><span class="line">  &lt;/property&gt;</span><br><span class="line"></span><br><span class="line">  </span><br><span class="line"></span><br><span class="line">  &lt;!-- 设置HDFS web UI用户身份 --&gt;</span><br><span class="line"></span><br><span class="line">  &lt;property&gt;</span><br><span class="line"></span><br><span class="line">	&lt;name&gt;hadoop.http.staticuser.user&lt;/name&gt;</span><br><span class="line"></span><br><span class="line">	&lt;value&gt;root&lt;/value&gt;</span><br><span class="line"></span><br><span class="line">  &lt;/property&gt;</span><br><span class="line"></span><br><span class="line">  </span><br><span class="line"></span><br><span class="line">  &lt;!-- 整合hive 用户代理设置 --&gt;</span><br><span class="line"></span><br><span class="line">  &lt;property&gt;</span><br><span class="line"></span><br><span class="line">	&lt;name&gt;hadoop.proxyuser.root.hosts&lt;/name&gt;</span><br><span class="line"></span><br><span class="line">	&lt;value&gt;*&lt;/value&gt;</span><br><span class="line"></span><br><span class="line">  &lt;/property&gt;</span><br><span class="line"></span><br><span class="line">  </span><br><span class="line"></span><br><span class="line">  &lt;property&gt;</span><br><span class="line"></span><br><span class="line">	&lt;name&gt;hadoop.proxyuser.root.groups&lt;/name&gt;</span><br><span class="line"></span><br><span class="line">	&lt;value&gt;*&lt;/value&gt;</span><br><span class="line"></span><br><span class="line">  &lt;/property&gt;</span><br><span class="line"></span><br><span class="line">  </span><br><span class="line"></span><br><span class="line">  &lt;!-- 文件系统垃圾桶保存时间 --&gt;</span><br><span class="line"></span><br><span class="line">  &lt;property&gt;</span><br><span class="line"></span><br><span class="line">	&lt;name&gt;fs.trash.interval&lt;/name&gt;</span><br><span class="line"></span><br><span class="line">	&lt;value&gt;1440&lt;/value&gt;</span><br><span class="line"></span><br><span class="line">  &lt;/property&gt;</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-none"><code class="language-none">&lt;!-- 设置默认使用的文件系统 Hadoop支持file、HDFS、GFS、ali|Amazon云等文件系统 --&gt;
+
+  &lt;property&gt;
+
+	&lt;name&gt;fs.defaultFS&lt;&#x2F;name&gt;
+
+	&lt;value&gt;hdfs:&#x2F;&#x2F;node1:8020&lt;&#x2F;value&gt;
+
+  &lt;&#x2F;property&gt;
+
+  
+
+  &lt;!-- 设置Hadoop本地保存数据路径 --&gt;
+
+  &lt;property&gt;
+
+	&lt;name&gt;hadoop.tmp.dir&lt;&#x2F;name&gt;
+
+	&lt;value&gt;&#x2F;export&#x2F;data&#x2F;hadoop-3.3.0&lt;&#x2F;value&gt;
+
+  &lt;&#x2F;property&gt;
+
+  
+
+  &lt;!-- 设置HDFS web UI用户身份 --&gt;
+
+  &lt;property&gt;
+
+	&lt;name&gt;hadoop.http.staticuser.user&lt;&#x2F;name&gt;
+
+	&lt;value&gt;root&lt;&#x2F;value&gt;
+
+  &lt;&#x2F;property&gt;
+
+  
+
+  &lt;!-- 整合hive 用户代理设置 --&gt;
+
+  &lt;property&gt;
+
+	&lt;name&gt;hadoop.proxyuser.root.hosts&lt;&#x2F;name&gt;
+
+	&lt;value&gt;*&lt;&#x2F;value&gt;
+
+  &lt;&#x2F;property&gt;
+
+  
+
+  &lt;property&gt;
+
+	&lt;name&gt;hadoop.proxyuser.root.groups&lt;&#x2F;name&gt;
+
+	&lt;value&gt;*&lt;&#x2F;value&gt;
+
+  &lt;&#x2F;property&gt;
+
+  
+
+  &lt;!-- 文件系统垃圾桶保存时间 --&gt;
+
+  &lt;property&gt;
+
+	&lt;name&gt;fs.trash.interval&lt;&#x2F;name&gt;
+
+	&lt;value&gt;1440&lt;&#x2F;value&gt;
+
+  &lt;&#x2F;property&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>- hdfs-site.xml</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">  &lt;!-- 设置SNN进程运行机器位置信息 --&gt;</span><br><span class="line"></span><br><span class="line">  &lt;property&gt;</span><br><span class="line"></span><br><span class="line">	&lt;name&gt;dfs.namenode.secondary.http-address&lt;/name&gt;</span><br><span class="line"></span><br><span class="line">	&lt;value&gt;node2:9868&lt;/value&gt;</span><br><span class="line"></span><br><span class="line">&lt;/property&gt;</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-none"><code class="language-none">  &lt;!-- 设置SNN进程运行机器位置信息 --&gt;
+
+  &lt;property&gt;
+
+	&lt;name&gt;dfs.namenode.secondary.http-address&lt;&#x2F;name&gt;
+
+	&lt;value&gt;node2:9868&lt;&#x2F;value&gt;
+
+&lt;&#x2F;property&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>- mapred-site.xml</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line"> &lt;!-- 设置MR程序默认运行模式： yarn集群模式 local本地模式 --&gt;</span><br><span class="line"></span><br><span class="line">  &lt;property&gt;</span><br><span class="line"></span><br><span class="line">   &lt;name&gt;mapreduce.framework.name&lt;/name&gt;</span><br><span class="line"></span><br><span class="line">   &lt;value&gt;yarn&lt;/value&gt;</span><br><span class="line"></span><br><span class="line">  &lt;/property&gt;</span><br><span class="line"></span><br><span class="line">  </span><br><span class="line"></span><br><span class="line">  &lt;!-- MR程序历史服务地址 --&gt;</span><br><span class="line"></span><br><span class="line">  &lt;property&gt;</span><br><span class="line"></span><br><span class="line">   &lt;name&gt;mapreduce.jobhistory.address&lt;/name&gt;</span><br><span class="line"></span><br><span class="line">   &lt;value&gt;node1:10020&lt;/value&gt;</span><br><span class="line"></span><br><span class="line">  &lt;/property&gt;</span><br><span class="line"></span><br><span class="line">   </span><br><span class="line"></span><br><span class="line">  &lt;!-- MR程序历史服务器web端地址 --&gt;</span><br><span class="line"></span><br><span class="line">  &lt;property&gt;</span><br><span class="line"></span><br><span class="line">   &lt;name&gt;mapreduce.jobhistory.webapp.address&lt;/name&gt;</span><br><span class="line"></span><br><span class="line">   &lt;value&gt;node1:19888&lt;/value&gt;</span><br><span class="line"></span><br><span class="line">  &lt;/property&gt;</span><br><span class="line"></span><br><span class="line">  </span><br><span class="line"></span><br><span class="line">  &lt;property&gt;</span><br><span class="line"></span><br><span class="line">   &lt;name&gt;yarn.app.mapreduce.am.env&lt;/name&gt;</span><br><span class="line"></span><br><span class="line">   &lt;value&gt;HADOOP_MAPRED_HOME=$&#123;HADOOP_HOME&#125;&lt;/value&gt;</span><br><span class="line"></span><br><span class="line">  &lt;/property&gt;</span><br><span class="line"></span><br><span class="line">  </span><br><span class="line"></span><br><span class="line">  &lt;property&gt;</span><br><span class="line"></span><br><span class="line">   &lt;name&gt;mapreduce.map.env&lt;/name&gt;</span><br><span class="line"></span><br><span class="line">   &lt;value&gt;HADOOP_MAPRED_HOME=$&#123;HADOOP_HOME&#125;&lt;/value&gt;</span><br><span class="line"></span><br><span class="line">  &lt;/property&gt;</span><br><span class="line"></span><br><span class="line">  </span><br><span class="line"></span><br><span class="line">  &lt;property&gt;</span><br><span class="line"></span><br><span class="line">   &lt;name&gt;mapreduce.reduce.env&lt;/name&gt;</span><br><span class="line"></span><br><span class="line">   &lt;value&gt;HADOOP_MAPRED_HOME=$&#123;HADOOP_HOME&#125;&lt;/value&gt;</span><br><span class="line"></span><br><span class="line">&lt;/property&gt;</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-none"><code class="language-none"> &lt;!-- 设置MR程序默认运行模式： yarn集群模式 local本地模式 --&gt;
+
+  &lt;property&gt;
+
+   &lt;name&gt;mapreduce.framework.name&lt;&#x2F;name&gt;
+
+   &lt;value&gt;yarn&lt;&#x2F;value&gt;
+
+  &lt;&#x2F;property&gt;
+
+  
+
+  &lt;!-- MR程序历史服务地址 --&gt;
+
+  &lt;property&gt;
+
+   &lt;name&gt;mapreduce.jobhistory.address&lt;&#x2F;name&gt;
+
+   &lt;value&gt;node1:10020&lt;&#x2F;value&gt;
+
+  &lt;&#x2F;property&gt;
+
+   
+
+  &lt;!-- MR程序历史服务器web端地址 --&gt;
+
+  &lt;property&gt;
+
+   &lt;name&gt;mapreduce.jobhistory.webapp.address&lt;&#x2F;name&gt;
+
+   &lt;value&gt;node1:19888&lt;&#x2F;value&gt;
+
+  &lt;&#x2F;property&gt;
+
+  
+
+  &lt;property&gt;
+
+   &lt;name&gt;yarn.app.mapreduce.am.env&lt;&#x2F;name&gt;
+
+   &lt;value&gt;HADOOP_MAPRED_HOME&#x3D;$&#123;HADOOP_HOME&#125;&lt;&#x2F;value&gt;
+
+  &lt;&#x2F;property&gt;
+
+  
+
+  &lt;property&gt;
+
+   &lt;name&gt;mapreduce.map.env&lt;&#x2F;name&gt;
+
+   &lt;value&gt;HADOOP_MAPRED_HOME&#x3D;$&#123;HADOOP_HOME&#125;&lt;&#x2F;value&gt;
+
+  &lt;&#x2F;property&gt;
+
+  
+
+  &lt;property&gt;
+
+   &lt;name&gt;mapreduce.reduce.env&lt;&#x2F;name&gt;
+
+   &lt;value&gt;HADOOP_MAPRED_HOME&#x3D;$&#123;HADOOP_HOME&#125;&lt;&#x2F;value&gt;
+
+&lt;&#x2F;property&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>- yarn-site.xml</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br></pre></td><td class="code"><pre><span class="line"> &lt;!-- 设置YARN集群主角色运行机器位置 --&gt;</span><br><span class="line"></span><br><span class="line">  &lt;property&gt;</span><br><span class="line"></span><br><span class="line">  	&lt;name&gt;yarn.resourcemanager.hostname&lt;/name&gt;</span><br><span class="line">  	</span><br><span class="line">  	&lt;value&gt;node1&lt;/value&gt;</span><br><span class="line"></span><br><span class="line">  &lt;/property&gt;</span><br><span class="line"></span><br><span class="line">  </span><br><span class="line"></span><br><span class="line">  &lt;property&gt;</span><br><span class="line"></span><br><span class="line"> 	&lt;name&gt;yarn.nodemanager.aux-services&lt;/name&gt;</span><br><span class="line"></span><br><span class="line"> 	&lt;value&gt;mapreduce_shuffle&lt;/value&gt;</span><br><span class="line"></span><br><span class="line">  &lt;/property&gt;</span><br><span class="line"></span><br><span class="line">  </span><br><span class="line"></span><br><span class="line">  &lt;!-- 是否将对容器实施物理内存限制 --&gt;</span><br><span class="line"></span><br><span class="line">  &lt;property&gt;</span><br><span class="line"></span><br><span class="line">	&lt;name&gt;yarn.nodemanager.pmem-check-enabled&lt;/name&gt;</span><br><span class="line"></span><br><span class="line">	&lt;value&gt;false&lt;/value&gt;</span><br><span class="line"></span><br><span class="line">  &lt;/property&gt;</span><br><span class="line"></span><br><span class="line">  </span><br><span class="line"></span><br><span class="line">  &lt;!-- 是否将对容器实施虚拟内存限制。 --&gt;</span><br><span class="line"></span><br><span class="line">  &lt;property&gt;</span><br><span class="line"></span><br><span class="line">	&lt;name&gt;yarn.nodemanager.vmem-check-enabled&lt;/name&gt;</span><br><span class="line"></span><br><span class="line">	&lt;value&gt;false&lt;/value&gt;</span><br><span class="line"></span><br><span class="line">  &lt;/property&gt;</span><br><span class="line"></span><br><span class="line">  </span><br><span class="line"></span><br><span class="line">  &lt;!-- 开启日志聚集 --&gt;</span><br><span class="line"></span><br><span class="line">  &lt;property&gt;</span><br><span class="line"></span><br><span class="line">  	&lt;name&gt;yarn.log-aggregation-enable&lt;/name&gt;</span><br><span class="line"></span><br><span class="line">  	&lt;value&gt;true&lt;/value&gt;</span><br><span class="line"></span><br><span class="line">  &lt;/property&gt;</span><br><span class="line"></span><br><span class="line">  </span><br><span class="line"></span><br><span class="line">  &lt;!-- 设置yarn历史服务器地址 --&gt;</span><br><span class="line"></span><br><span class="line">  &lt;property&gt;</span><br><span class="line"></span><br><span class="line">	&lt;name&gt;yarn.log.server.url&lt;/name&gt;</span><br><span class="line"></span><br><span class="line">	&lt;value&gt;http://node1:19888/jobhistory/logs&lt;/value&gt;</span><br><span class="line"></span><br><span class="line">  &lt;/property&gt;</span><br><span class="line"></span><br><span class="line">  </span><br><span class="line"></span><br><span class="line">  &lt;!-- 历史日志保存的时间 7天 --&gt;</span><br><span class="line"></span><br><span class="line">  &lt;property&gt;</span><br><span class="line"></span><br><span class="line">   &lt;name&gt;yarn.log-aggregation.retain-seconds&lt;/name&gt;</span><br><span class="line"></span><br><span class="line">   &lt;value&gt;604800&lt;/value&gt;</span><br><span class="line"></span><br><span class="line">&lt;/property&gt;</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-none"><code class="language-none"> &lt;!-- 设置YARN集群主角色运行机器位置 --&gt;
+
+  &lt;property&gt;
+
+  	&lt;name&gt;yarn.resourcemanager.hostname&lt;&#x2F;name&gt;
+  	
+  	&lt;value&gt;node1&lt;&#x2F;value&gt;
+
+  &lt;&#x2F;property&gt;
+
+  
+
+  &lt;property&gt;
+
+ 	&lt;name&gt;yarn.nodemanager.aux-services&lt;&#x2F;name&gt;
+
+ 	&lt;value&gt;mapreduce_shuffle&lt;&#x2F;value&gt;
+
+  &lt;&#x2F;property&gt;
+
+  
+
+  &lt;!-- 是否将对容器实施物理内存限制 --&gt;
+
+  &lt;property&gt;
+
+	&lt;name&gt;yarn.nodemanager.pmem-check-enabled&lt;&#x2F;name&gt;
+
+	&lt;value&gt;false&lt;&#x2F;value&gt;
+
+  &lt;&#x2F;property&gt;
+
+  
+
+  &lt;!-- 是否将对容器实施虚拟内存限制。 --&gt;
+
+  &lt;property&gt;
+
+	&lt;name&gt;yarn.nodemanager.vmem-check-enabled&lt;&#x2F;name&gt;
+
+	&lt;value&gt;false&lt;&#x2F;value&gt;
+
+  &lt;&#x2F;property&gt;
+
+  
+
+  &lt;!-- 开启日志聚集 --&gt;
+
+  &lt;property&gt;
+
+  	&lt;name&gt;yarn.log-aggregation-enable&lt;&#x2F;name&gt;
+
+  	&lt;value&gt;true&lt;&#x2F;value&gt;
+
+  &lt;&#x2F;property&gt;
+
+  
+
+  &lt;!-- 设置yarn历史服务器地址 --&gt;
+
+  &lt;property&gt;
+
+	&lt;name&gt;yarn.log.server.url&lt;&#x2F;name&gt;
+
+	&lt;value&gt;http:&#x2F;&#x2F;node1:19888&#x2F;jobhistory&#x2F;logs&lt;&#x2F;value&gt;
+
+  &lt;&#x2F;property&gt;
+
+  
+
+  &lt;!-- 历史日志保存的时间 7天 --&gt;
+
+  &lt;property&gt;
+
+   &lt;name&gt;yarn.log-aggregation.retain-seconds&lt;&#x2F;name&gt;
+
+   &lt;value&gt;604800&lt;&#x2F;value&gt;
+
+&lt;&#x2F;property&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p> - workers</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">node1.itcast.cn</span><br><span class="line"></span><br><span class="line">node2.itcast.cn</span><br><span class="line"></span><br><span class="line">node3.itcast.cn </span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-none"><code class="language-none">node1.itcast.cn
+
+node2.itcast.cn
+
+node3.itcast.cn <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>\3. 将node1的hadoop-3.3.0分发到node2、node3</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">cd /export/server</span><br><span class="line"></span><br><span class="line">scp -r /export/server/hadoop-3.3.0 root@node2:$PWD</span><br><span class="line"></span><br><span class="line">scp -r /export/server/hadoop-3.3.0 root@node3:$PWD</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-none"><code class="language-none">cd &#x2F;export&#x2F;server
+
+scp -r &#x2F;export&#x2F;server&#x2F;hadoop-3.3.0 root@node2:$PWD
+
+scp -r &#x2F;export&#x2F;server&#x2F;hadoop-3.3.0 root@node3:$PWD<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>\4. 将hadoop添加到环境变量</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/profile</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-none"><code class="language-none">vim &#x2F;etc&#x2F;profile<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">export HADOOP_HOME=/export/server/hadoop-3.3.0</span><br><span class="line"></span><br><span class="line">export PATH=$PATH:$HADOOP_HOME/bin:$HADOOP_HOME/sbin</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-none"><code class="language-none">export HADOOP_HOME&#x3D;&#x2F;export&#x2F;server&#x2F;hadoop-3.3.0
+
+export PATH&#x3D;$PATH:$HADOOP_HOME&#x2F;bin:$HADOOP_HOME&#x2F;sbin<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 
 <p>\5. 重新加载环境变量文件</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">source /etc/profile</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-none"><code class="language-none">source &#x2F;etc&#x2F;profile<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <p>\6. Hadoop集群启动</p>
 <p>（1）格式化namenode（只有首次启动需要格式化）</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hdfs namenode -format</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-none"><code class="language-none">hdfs namenode -format<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <p>（2）脚本一键启动</p>
 <p><img src="/2022/05/25/one/2.png" alt="img"> </p>
@@ -224,42 +643,76 @@
 <p>（2）YARN集群：<a target="_blank" rel="noopener" href="http://node1:8088/">http://node1:8088/</a></p>
 <p><em><strong>*四、zookeeper安装配置*</strong></em></p>
 <p>\1. 上传zookeeper-3.4.10.tar.gz到&#x2F;export&#x2F;server&#x2F;目录下并解压文件</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cd /export/server/</span><br><span class="line"></span><br><span class="line">tar -zxvf zookeeper-3.4.10.tar.gz</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-none"><code class="language-none">cd &#x2F;export&#x2F;server&#x2F;
+
+tar -zxvf zookeeper-3.4.10.tar.gz<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 
 <p>\2. 创建软连接</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cd /export/server/</span><br><span class="line"></span><br><span class="line">ln -s zookeeper-3.4.10/ zookeeper</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-none"><code class="language-none">cd &#x2F;export&#x2F;server&#x2F;
+
+ln -s zookeeper-3.4.10&#x2F; zookeeper<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 
 <p>\3. 修改配置文件</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd /export/server/zookeeper/conf/</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-none"><code class="language-none">cd &#x2F;export&#x2F;server&#x2F;zookeeper&#x2F;conf&#x2F;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <p>(1)将zoo_sample.cfg复制为zoo.cfg</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cp zoo_sample.cfg zoo.cfg</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-none"><code class="language-none">cp zoo_sample.cfg zoo.cfg<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim zoo.cfg</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-none"><code class="language-none">vim zoo.cfg<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <p>将zoo.cfg修改为以下内容</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">#Zookeeper的数据存放目录</span><br><span class="line"></span><br><span class="line">dataDir=/export/server/zookeeper/zkdatas</span><br><span class="line"></span><br><span class="line">\# 保留多少个快照</span><br><span class="line"></span><br><span class="line">autopurge.snapRetainCount=3</span><br><span class="line"></span><br><span class="line">\# 日志多少小时清理一次</span><br><span class="line"></span><br><span class="line">autopurge.purgeInterval=1</span><br><span class="line"></span><br><span class="line">\# 集群中服务器地址</span><br><span class="line"></span><br><span class="line">server.1=node1:2888:3888</span><br><span class="line"></span><br><span class="line">server.2=node2:2888:3888</span><br><span class="line"></span><br><span class="line">server.3=node3:2888:3888</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-none"><code class="language-none">#Zookeeper的数据存放目录
+
+dataDir&#x3D;&#x2F;export&#x2F;server&#x2F;zookeeper&#x2F;zkdatas
+
+\# 保留多少个快照
+
+autopurge.snapRetainCount&#x3D;3
+
+\# 日志多少小时清理一次
+
+autopurge.purgeInterval&#x3D;1
+
+\# 集群中服务器地址
+
+server.1&#x3D;node1:2888:3888
+
+server.2&#x3D;node2:2888:3888
+
+server.3&#x3D;node3:2888:3888<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>(2) 在node1主机的&#x2F;export&#x2F;server&#x2F;zookeeper&#x2F;zkdatas&#x2F;这个路径下创建一个文件，文件名为myid ,文件内容为1</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">echo 1 &gt; /export/server/zookeeper/zkdatas/myid</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-none"><code class="language-none">echo 1 &gt; &#x2F;export&#x2F;server&#x2F;zookeeper&#x2F;zkdatas&#x2F;myid<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <p>(3) 将node1中&#x2F;export&#x2F;server&#x2F;zookeeper-3.4.10分发给node2、node3</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">scp -r /export/server/zookeeper-3.4.10/ slave1:$PWD </span><br><span class="line"></span><br><span class="line">scp -r /export/server/zookeeper-3.4.10/ slave2:$PWD</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-none"><code class="language-none">scp -r &#x2F;export&#x2F;server&#x2F;zookeeper-3.4.10&#x2F; slave1:$PWD 
+
+scp -r &#x2F;export&#x2F;server&#x2F;zookeeper-3.4.10&#x2F; slave2:$PWD<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 
 <p>(4) 在node2和node3上创建软连接</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ln -s zookeeper-3.4.10/ zookeeper</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-none"><code class="language-none">ln -s zookeeper-3.4.10&#x2F; zookeeper<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <p>(5) 分别在node2、node3上修改myid的值为2，3</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">cd /export/server/</span><br><span class="line"></span><br><span class="line">echo 2 &gt; /export/server/zookeeper/zkdatas/myid</span><br><span class="line"></span><br><span class="line">echo 3 &gt; /export/server/zookeeper/zkdatas/myid</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-none"><code class="language-none">cd &#x2F;export&#x2F;server&#x2F;
+
+echo 2 &gt; &#x2F;export&#x2F;server&#x2F;zookeeper&#x2F;zkdatas&#x2F;myid
+
+echo 3 &gt; &#x2F;export&#x2F;server&#x2F;zookeeper&#x2F;zkdatas&#x2F;myid<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>(6) 配置zookeeper的环境变量（三台都需要配置）</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/profile</span><br><span class="line"></span><br><span class="line">export ZOOKEEPER_HOME=/export/server/zookeeper</span><br><span class="line"></span><br><span class="line">export PATH=$PATH:$ZOOKEEPER_HOME/bin</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-none"><code class="language-none">vim &#x2F;etc&#x2F;profile
+
+export ZOOKEEPER_HOME&#x3D;&#x2F;export&#x2F;server&#x2F;zookeeper
+
+export PATH&#x3D;$PATH:$ZOOKEEPER_HOME&#x2F;bin<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>(7) 重新加载环境变量</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">source /etc/profile </span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-none"><code class="language-none">source &#x2F;etc&#x2F;profile <span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <p>(8) 三台机器开启zookeeper</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cd /export/server/zookerper-3.4.10/bin</span><br><span class="line"></span><br><span class="line">zkServer.sh start</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-none"><code class="language-none">cd &#x2F;export&#x2F;server&#x2F;zookerper-3.4.10&#x2F;bin
+
+zkServer.sh start<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 
 <p>(9) 结果显示</p>
 <p><img src="/2022/05/25/one/3.png" alt="img"><img src="/2022/05/25/one/4.png" alt="img"> </p>
@@ -268,4 +721,124 @@
 <p><img src="/2022/05/25/one/6.png" alt="img"> </p>
 <p><img src="/2022/05/25/one/7.png" alt="img"> </p>
 <p><img src="/2022/05/25/one/8.png"></p>
-</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="http://example.com">LF的博客</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://example.com/2022/05/25/one/">http://example.com/2022/05/25/one/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://example.com" target="_blank">LF的博客</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/gh/overtrue/share.js@master/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/2022/05/17/three/"><img class="next-cover" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">Spark HA &amp; Yarn配置</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">LF的博客</div><div class="author-info__description"></div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">3</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2022/05/25/one/" title="Spark基础配置"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Spark基础配置"/></a><div class="content"><a class="title" href="/2022/05/25/one/" title="Spark基础配置">Spark基础配置</a><time datetime="2022-05-25T03:32:31.000Z" title="发表于 2022-05-25 11:32:31">2022-05-25</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/05/17/three/" title="Spark HA &amp; Yarn配置"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Spark HA &amp; Yarn配置"/></a><div class="content"><a class="title" href="/2022/05/17/three/" title="Spark HA &amp; Yarn配置">Spark HA &amp; Yarn配置</a><time datetime="2022-05-17T05:42:06.000Z" title="发表于 2022-05-17 13:42:06">2022-05-17</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/05/17/two/" title="Spark local&amp; stand-alone配置"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Spark local&amp; stand-alone配置"/></a><div class="content"><a class="title" href="/2022/05/17/two/" title="Spark local&amp; stand-alone配置">Spark local&amp; stand-alone配置</a><time datetime="2022-05-17T04:58:19.000Z" title="发表于 2022-05-17 12:58:19">2022-05-17</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2022 By LF的博客</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
+
+            </div>
+        
+        <footer class="article-footer">
+        </footer>
+    </div>
+</article>
+
+
+    
+<nav id="article-nav">
+    
+    
+        <a href="/2022/05/17/three/" id="article-nav-older" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">下一篇</strong>
+            <div class="article-nav-title">Spark HA &amp; Yarn配置</div>
+        </a>
+    
+</nav>
+
+
+
+
+
+    
+    
+
+
+
+
+<!-- baidu url auto push script -->
+<script type="text/javascript">
+    !function(){var e=/([http|https]:\/\/[a-zA-Z0-9\_\.]+\.baidu\.com)/gi,r=window.location.href,o=document.referrer;if(!e.test(r)){var n="//api.share.baidu.com/s.gif";o?(n+="?r="+encodeURIComponent(document.referrer),r&&(n+="&l="+r)):r&&(n+="?l="+r);var t=new Image;t.src=n}}(window);
+</script>     
+</section>
+        </div>
+        <footer id="footer">
+    <div class="outer">
+        <div id="footer-info" class="inner">
+            LF的博客 &copy; 2022 
+            <a rel="license noopener" target="_blank" href="http://creativecommons.org/licenses/by-nc-nd/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-nd/4.0/80x15.png" /></a>
+            <br> Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>. Theme - <a target="_blank" rel="noopener" href="https://github.com/zthxxx/hexo-theme-Wikitten">wikitten</a>
+            
+                <br>
+                <span id="busuanzi_container_site_pv"><i class="fa fa-eye"></i> <span id="busuanzi_value_site_pv"></span></span>
+                &nbsp;|&nbsp;
+                <span id="busuanzi_container_site_pv"><i class="fa fa-user"></i> <span id="busuanzi_value_site_uv"></span></span>
+            
+        </div>
+    </div>
+</footer>
+
+        
+
+    
+        
+<script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-share.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-video.min.js"></script>
+
+    
+    
+        
+<script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+
+    
+    
+        <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true,
+            TeX: {
+                equationNumbers: {
+                  autoNumber: 'AMS'
+                }
+            }
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script async src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+
+
+
+<!-- Custom Scripts -->
+
+<script src="/js/main.js"></script>
+
+
+    </div>
+</body>
+</html>
