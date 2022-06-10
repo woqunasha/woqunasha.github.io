@@ -3,39 +3,43 @@
 <head>
     <meta charset="utf-8">
     
-    <title>Spark HA &amp; Yarn配置 | LF的博客</title>
+    <title>Eagle部署及各项功能 | LF的博客</title>
     
     
-        <meta name="keywords" content="Spark HA &amp; Yarn配置" />
+        <meta name="keywords" content="Eagle部署及各项功能" />
     
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <meta name="description" content="*七、Spark-Standalone-HA模式* 注：此处因为先前配置时的zookeeper版本和spark版本不太兼容，导致此模式有故障，需要重新下载配置新的版本的zookeeper。配置之前需要删除三台主机的旧版zookeeper以及对应的软连接。  在node1节点上重新进行前面配置的zookerper操作  \1. 上传apache-zookeeper-3.7.0-bin.tar.gz到">
+    <meta name="description" content="一、Kafka  Eagle部署 （1）在&#x2F;export&#x2F;software路径下，上传并解压kafka-eagle-bin-2.1..gz cd &#x2F;export&#x2F;software&#x2F; rz tar -zxvf kafka-eagle-bin-2.1..gz  （2）当解压完kafka-eagle-bin-2.1..gz之后，ls查看，出现kafka-">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Spark HA &amp; Yarn配置">
-<meta property="og:url" content="http://example.com/2022/05/17/three/index.html">
+<meta property="og:title" content="Eagle部署及各项功能">
+<meta property="og:url" content="http://example.com/2022/06/10/eagle/index.html">
 <meta property="og:site_name" content="LF的博客">
-<meta property="og:description" content="*七、Spark-Standalone-HA模式* 注：此处因为先前配置时的zookeeper版本和spark版本不太兼容，导致此模式有故障，需要重新下载配置新的版本的zookeeper。配置之前需要删除三台主机的旧版zookeeper以及对应的软连接。  在node1节点上重新进行前面配置的zookerper操作  \1. 上传apache-zookeeper-3.7.0-bin.tar.gz到">
+<meta property="og:description" content="一、Kafka  Eagle部署 （1）在&#x2F;export&#x2F;software路径下，上传并解压kafka-eagle-bin-2.1..gz cd &#x2F;export&#x2F;software&#x2F; rz tar -zxvf kafka-eagle-bin-2.1..gz  （2）当解压完kafka-eagle-bin-2.1..gz之后，ls查看，出现kafka-">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://example.com/2022/05/17/three/1.png">
-<meta property="og:image" content="http://example.com/2022/05/17/three/2.png">
-<meta property="og:image" content="http://example.com/2022/05/17/three/3.png">
-<meta property="og:image" content="http://example.com/2022/05/17/three/4.png">
-<meta property="og:image" content="http://example.com/2022/05/17/three/12.png">
-<meta property="og:image" content="http://example.com/2022/05/17/three/5.png">
-<meta property="og:image" content="http://example.com/2022/05/17/three/6.png">
-<meta property="og:image" content="http://example.com/2022/05/17/three/13.png">
-<meta property="og:image" content="http://example.com/2022/05/17/three/7.png">
-<meta property="og:image" content="http://example.com/2022/05/17/three/8.png">
-<meta property="og:image" content="http://example.com/2022/05/17/three/14.png">
-<meta property="og:image" content="http://example.com/2022/05/17/three/9.png">
-<meta property="og:image" content="http://example.com/2022/05/17/three/10.png">
-<meta property="og:image" content="http://example.com/2022/05/17/three/15.png">
-<meta property="og:image" content="http://example.com/2022/05/17/three/11.png">
-<meta property="article:published_time" content="2022-05-17T05:42:06.000Z">
-<meta property="article:modified_time" content="2022-05-17T06:44:30.000Z">
+<meta property="og:image" content="http://example.com/2022/06/10/eagle/1.png">
+<meta property="og:image" content="http://example.com/2022/06/10/eagle/2.png">
+<meta property="og:image" content="http://example.com/2022/06/10/eagle/3.png">
+<meta property="og:image" content="http://example.com/2022/06/10/eagle/4.png">
+<meta property="og:image" content="http://example.com/2022/06/10/eagle/5.png">
+<meta property="og:image" content="http://example.com/2022/06/10/eagle/6.png">
+<meta property="og:image" content="http://example.com/2022/06/10/eagle/7.png">
+<meta property="og:image" content="http://example.com/2022/06/10/eagle/9.png">
+<meta property="og:image" content="http://example.com/2022/06/10/eagle/8.png">
+<meta property="og:image" content="http://example.com/2022/06/10/eagle/10.png">
+<meta property="og:image" content="http://example.com/2022/06/10/eagle/12.png">
+<meta property="og:image" content="http://example.com/2022/06/10/eagle/11.png">
+<meta property="og:image" content="http://example.com/2022/06/10/eagle/13.png">
+<meta property="og:image" content="http://example.com/2022/06/10/eagle/14.png">
+<meta property="og:image" content="http://example.com/2022/06/10/eagle/15.png">
+<meta property="og:image" content="http://example.com/2022/06/10/eagle/16.png">
+<meta property="og:image" content="http://example.com/2022/06/10/eagle/17.png">
+<meta property="og:image" content="http://example.com/2022/06/10/eagle/18.png">
+<meta property="og:image" content="http://example.com/2022/06/10/eagle/19.png">
+<meta property="article:published_time" content="2022-06-10T01:54:21.000Z">
+<meta property="article:modified_time" content="2022-06-10T02:43:55.510Z">
 <meta property="article:author" content="LF的博客">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://example.com/2022/05/17/three/1.png">
+<meta name="twitter:image" content="http://example.com/2022/06/10/eagle/1.png">
     
 
     
@@ -255,7 +259,7 @@
     <div id="toTop" class="fa fa-angle-up"></div>
 </aside>
             
-            <section id="main"><article id="post-three" class="article article-type-post" itemscope itemprop="blogPost">
+            <section id="main"><article id="post-eagle" class="article article-type-post" itemscope itemprop="blogPost">
     <div class="article-inner">
         
         
@@ -267,8 +271,8 @@
                         
     <div class="article-date">
         <i class="fa fa-calendar"></i>
-        <a href="/2022/05/17/three/">
-            <time datetime="2022-05-17T05:42:06.000Z" itemprop="datePublished">2022-05-17</time>
+        <a href="/2022/06/10/eagle/">
+            <time datetime="2022-06-10T01:54:21.000Z" itemprop="datePublished">2022-06-10</time>
         </a>
     </div>
 
@@ -279,13 +283,13 @@
                         
                         
                             <div class="article-meta-button">
-                                <a target="_blank" rel="noopener" href='https://github.com/LF/Wiki-site/raw/writing/source/_posts/three.md'> Source </a>
+                                <a target="_blank" rel="noopener" href='https://github.com/LF/Wiki-site/raw/writing/source/_posts/eagle.md'> Source </a>
                             </div>
                             <div class="article-meta-button">
-                                <a target="_blank" rel="noopener" href='https://github.com/LF/Wiki-site/edit/writing/source/_posts/three.md'> Edit </a>
+                                <a target="_blank" rel="noopener" href='https://github.com/LF/Wiki-site/edit/writing/source/_posts/eagle.md'> Edit </a>
                             </div>
                             <div class="article-meta-button">
-                                <a target="_blank" rel="noopener" href='https://github.com/LF/Wiki-site/commits/writing/source/_posts/three.md'> History </a>
+                                <a target="_blank" rel="noopener" href='https://github.com/LF/Wiki-site/commits/writing/source/_posts/eagle.md'> History </a>
                             </div>
                         
                     </div>
@@ -293,7 +297,7 @@
                 
     
         <h1 class="article-title" itemprop="name">
-            Spark HA &amp; Yarn配置
+            Eagle部署及各项功能
         </h1>
     
 
@@ -311,82 +315,73 @@
             
         
         
-            <p><em><strong>*七、Spark-Standalone-HA模式*</strong></em></p>
-<p>注：此处因为先前配置时的zookeeper版本和spark版本不太兼容，导致此模式有故障，需要重新下载配置新的版本的zookeeper。配置之前需要删除三台主机的旧版zookeeper以及对应的软连接。 </p>
-<p>在node1节点上重新进行前面配置的zookerper操作 </p>
-<p>\1. 上传apache-zookeeper-3.7.0-bin.tar.gz到&#x2F;export&#x2F;server&#x2F;目录下并解压文件</p>
-<pre class="line-numbers language-none"><code class="language-none">cd &#x2F;export&#x2F;server&#x2F;
+            <p><em><strong>一、Kafka  Eagle部署</strong></em></p>
+<p>（1）在&#x2F;export&#x2F;software路径下，上传并解压kafka-eagle-bin-2.1..gz</p>
+<pre class="line-numbers language-none"><code class="language-none">cd &#x2F;export&#x2F;software&#x2F;
+rz
+tar -zxvf kafka-eagle-bin-2.1..gz<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 
-tar -zxvf apache-zookeeper-3.7.0-bin.tar.gz<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<p>（2）当解压完kafka-eagle-bin-2.1..gz之后，ls查看，出现kafka-eagle-bin-2.1.0意味着解压成功</p>
+<p><img src="/2022/06/10/eagle/1.png"></p>
+<p>（3）进入&#x2F;export&#x2F;software&#x2F;kafka-eagle-bin-2.1.0路径，可发现其中还有一个efak-web-2.1.0.gz解压包，对其解压</p>
+<pre class="line-numbers language-none"><code class="language-none">cd &#x2F;export&#x2F;software&#x2F;kafka-eagle-bin-2.1.0
+tar -zxvf efak-web-2.1.0.gz<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
-<p>\2. 在&#x2F;export&#x2F;server&#x2F;目录下创建软连接</p>
-<pre class="line-numbers language-none"><code class="language-none">cd &#x2F;export&#x2F;server&#x2F;
+<p>（4）当解压完efak-web-2.1.0.gz之后，ls查看，出现efak-web-2.1.0意味着解压成功</p>
+<p><img src="/2022/06/10/eagle/2.png"></p>
+<p>（5）配置eagle</p>
+<p>​		······修改配置文件system-config.properties</p>
+<pre class="line-numbers language-none"><code class="language-none">cd &#x2F;export&#x2F;software&#x2F;kafka-eagle-bin-2.1.0&#x2F;efak-web-2.1.0&#x2F;conf&#x2F;
+vi system-config.properties<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
-ln -s apache-zookeeper-3.7.0-bin spark<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<p><img src="/2022/06/10/eagle/3.png"></p>
+<p><img src="/2022/06/10/eagle/4.png"></p>
+<p><img src="/2022/06/10/eagle/5.png"></p>
+<p>​		······修改环境变量&#x2F;etc&#x2F;profile，并重新加载</p>
+<pre class="line-numbers language-none"><code class="language-none">vi &#x2F;etc&#x2F;profile
+source &#x2F;etc&#x2F;profile<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
-<p>\3. 进入&#x2F;export&#x2F;server&#x2F;zookeeper&#x2F;conf&#x2F;将zoo_sample.cfg文件复制为新文件 zoo.cfg</p>
-<p>\4. 接上步给zoo.cfg 添加内容 </p>
-<p>\5. 进入&#x2F;export&#x2F;server&#x2F;zookeeper&#x2F;zkdatas 目录在此目录下创建 myid 文件，将1写入进去</p>
-<p>\6. 将node1节点中 &#x2F;export&#x2F;server&#x2F;zookeeper-3.7.0 路径下内容分发给node2和node3</p>
-<p>\7. 分发完后，分别在node2和node3上创建软连接</p>
-<p>\8. 将node2和node3的&#x2F;export&#x2F;server&#x2F;zookeeper&#x2F;zkdatas&#x2F;文件夹 </p>
-<p>下的myid中的内容分别改为2和3</p>
-<p>配置环境变量： </p>
-<p>因先前配置 zookeeper 时候创建过软连接且以 ’zookeeper‘ 为路径，所以不用配置环境变量，此处也是创建软连接的方便之处. </p>
-<pre class="line-numbers language-none"><code class="language-none">cd &#x2F;export&#x2F;server&#x2F;spark&#x2F;conf <span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p><img src="/2022/06/10/eagle/6.png"></p>
+<p>（6）启动前需要手动创建&#x2F;export&#x2F;data&#x2F;db目录</p>
+<pre class="line-numbers language-none"><code class="language-none">mkdir &#x2F;export&#x2F;data&#x2F;db<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
-<pre class="line-numbers language-none"><code class="language-none">vim spark-env.sh<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>（7）启动Eagle（注意：需要开启zookeeper和kafka）</p>
+<pre class="line-numbers language-none"><code class="language-none">cd &#x2F;export&#x2F;software&#x2F;kafka-eagle-bin-2.1.0&#x2F;efak-web-2.1.0&#x2F;bin&#x2F;
+ke.sh start<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
-<p>删除: SPARK_MASTER_HOST&#x3D;node1</p>
-<p>在文末添加内容 </p>
-<pre class="line-numbers language-none"><code class="language-none">SPARK_DAEMON_JAVA_OPTS&#x3D;&quot;-Dspark.deploy.recoveryMode&#x3D;ZOOKEEPER - 
-
-Dspark.deploy.zookeeper.url&#x3D;master:2181,slave1:2181,slave2:2181 - 
-
-Dspark.deploy.zookeeper.dir&#x3D;&#x2F;spark-ha&quot; 
-
-\# spark.deploy.recoveryMode 指定HA模式 基于Zookeeper实现 
-
-\# 指定Zookeeper的连接地址 
-
-\# 指定在Zookeeper中注册临时节点的路径 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<p>\9. 分发spark-env.sh到node2和node3上 </p>
-<pre class="line-numbers language-none"><code class="language-none">scp spark-env.sh node2:&#x2F;export&#x2F;server&#x2F;spark&#x2F;conf&#x2F; 
-
-scp spark-env.sh node3:&#x2F;export&#x2F;server&#x2F;spark&#x2F;conf&#x2F; <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-
-<p>\10. 启动之前确保 Zookeeper 和 HDFS 均已经启动 </p>
-<p>启动集群: </p>
-<p># 在node1上 启动一个master 和全部worker</p>
-<pre class="line-numbers language-none"><code class="language-none">sbin&#x2F;start-all.sh<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<p># 注意, 下面命令在node2上执行</p>
-<pre class="line-numbers language-none"><code class="language-none">sbin&#x2F;start-master.sh<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<p># 在node2上启动一个备用的master进程</p>
-<p>#将node1的master kill掉，查看node2的WebUI界面</p>
-<p><img src="/2022/05/17/three/1.png" alt="img"> </p>
-<p><em><strong>*八、Spark-yarn模式*</strong></em></p>
-<p>1、启动yarn的历史服务器，jps看进程</p>
-<p><img src="/2022/05/17/three/2.png" alt="img"> </p>
-<p>2、在yarn上启动pyspark</p>
-<p><img src="/2022/05/17/three/3.png" alt="img"> </p>
-<p>3、命令测试</p>
-<p><img src="/2022/05/17/three/4.png" alt="img"> </p>
-<p><img src="/2022/05/17/three/12.png" alt="img"> </p>
-<p><img src="/2022/05/17/three/5.png" alt="img"> </p>
-<p>4、提交任务测试</p>
-<p><img src="/2022/05/17/three/6.png" alt="img"> </p>
-<p><img src="/2022/05/17/three/13.png" alt="img"> </p>
-<p><img src="/2022/05/17/three/7.png" alt="img"> </p>
-<p>5、client模式测试pi</p>
-<p><img src="/2022/05/17/three/8.png" alt="img"> </p>
-<p><img src="/2022/05/17/three/14.png" alt="img"> </p>
-<p><img src="/2022/05/17/three/9.png" alt="img"> </p>
-<p>6、cluster模式测试pi</p>
-<p><img src="/2022/05/17/three/10.png" alt="img"> </p>
-<p><img src="/2022/05/17/three/15.png" alt="img"><img src="/2022/05/17/three/11.png" alt="img"></p>
+<p><img src="/2022/06/10/eagle/7.png"></p>
+<p>（8）进入本地界面（<a href="http://192.168.213.131:8048），出现下图，Eagle部署完成">http://192.168.213.131:8048），出现下图，Eagle部署完成</a></p>
+<p>​	······Account:admin</p>
+<p>​	······Password:123456</p>
+<p><img src="/2022/06/10/eagle/9.png"></p>
+<p><img src="/2022/06/10/eagle/8.png"></p>
+<p><em><strong>二、Kafka  Eagle各项功能</strong></em></p>
+<p>（1）Dashboard（仪表盘）</p>
+<p>​		查看BROKERS、TOPICS、ZOOKEEPERS、Topic LogSize Top10等</p>
+<p><img src="/2022/06/10/eagle/10.png"></p>
+<p><img src="/2022/06/10/eagle/12.png"></p>
+<p>（2）BScreen(大屏)</p>
+<p>​	该模块包含展示消费者和生产者当日及最近7天趋势、Kafka集群读写速度、Kafka集群历史总记录等。</p>
+<p><img src="/2022/06/10/eagle/11.png"></p>
+<p>（3）Topics（主题管理）</p>
+<p>​	该模块包含主题创建、主题管理、主题预览、KSQL查询主题、主题数据写入、主题属性配置等。</p>
+<p><img src="/2022/06/10/eagle/13.png"></p>
+<p>（4）Consumers（消费监控）</p>
+<p>​	该模块包含监控不同消费者组中的Topic被消费的详情，例如LogSize、Offsets、以及Lag等。同时，支持查看Lag的历史趋势图</p>
+<p><img src="/2022/06/10/eagle/14.png"></p>
+<p>（5）Cluster（集群管理）</p>
+<p>​	该模块包含Kafka集群和Zookeeper集群的详情展示，例如Kafka的IP和端口、版本号、启动时间、Zookeeper的Leader和Follower。同时，还支持多Kafka集群切换，以及Zookeeper Client数据查看等功能。</p>
+<p><img src="/2022/06/10/eagle/15.png"></p>
+<p>（6）Metrics（集群状态）</p>
+<p>​	该模块包含监控Kafka集群和Zookeeper集群的核心指标，包含Kafka的消息发送趋势、消息大小接收与发送趋势、Zookeeper的连接数趋势等。同时，还支持查看Broker的瞬时指标数据。</p>
+<p><img src="/2022/06/10/eagle/16.png"></p>
+<p>（7）Alarm（告警）</p>
+<p>​	该模块包含告警集群异常和消费者应用Lag异常。同时，支持多种IM告警方式，例如邮件、钉钉、微信、Webhook等。</p>
+<p><img src="/2022/06/10/eagle/17.png"></p>
+<p>（8）System（系统管理）</p>
+<p>​	该模块包含用户管理，例如创建用户、用户授权、资源管理等</p>
+<p><img src="/2022/06/10/eagle/18.png"></p>
+<p><img src="/2022/06/10/eagle/19.png"></p>
 
             </div>
         
@@ -399,19 +394,10 @@ scp spark-env.sh node3:&#x2F;export&#x2F;server&#x2F;spark&#x2F;conf&#x2F; <span
     
 <nav id="article-nav">
     
-        <a href="/2022/05/25/one/" id="article-nav-newer" class="article-nav-link-wrap">
-            <strong class="article-nav-caption">上一篇</strong>
-            <div class="article-nav-title">
-                
-                    Spark基础配置
-                
-            </div>
-        </a>
     
-    
-        <a href="/2022/05/17/two/" id="article-nav-older" class="article-nav-link-wrap">
+        <a href="/2022/05/25/one/" id="article-nav-older" class="article-nav-link-wrap">
             <strong class="article-nav-caption">下一篇</strong>
-            <div class="article-nav-title">Spark local&amp; stand-alone配置</div>
+            <div class="article-nav-title">Spark基础配置</div>
         </a>
     
 </nav>
