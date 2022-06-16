@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2022-06-10T02:43:55.510Z</updated>
+  <updated>2022-06-16T02:52:24.229Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -15,6 +15,75 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>kafka API使用方法</title>
+    <link href="http://example.com/2022/06/12/six/"/>
+    <id>http://example.com/2022/06/12/six/</id>
+    <published>2022-06-12T03:12:46.000Z</published>
+    <updated>2022-06-16T02:52:24.229Z</updated>
+    
+    <content type="html"><![CDATA[<p><strong>三、</strong><em><strong>*生产者API*</strong></em></p><p>一个正常的生产逻辑需要具备以下几个步骤</p><p>(1)配置生产者客户端参数及创建相应的生产者实例</p><p>(2)构建待发送的消息</p><p>(3)发送消息</p><p>(4)关闭生产者实例</p><p>\1. 新建Maven项目，配置pom.xml</p><p><img src="/2022/06/12/six/1.png" alt="img"> </p><p><img src="/2022/06/12/six/2.png" alt="img"> </p><p>\2. 新建ProducerDemo类，ProducerCallbackDemo类</p><p><img src="/2022/06/12/six/3.png" alt="img"> </p><p><img src="/2022/06/12/six/4.png" alt="img"> </p><p>\3. 生产者原理</p><p><img src="/2022/06/12/six/5.png" alt="img"> </p><p>整个生产者客户端由两个线程协调运行，这两个线程分别为主线程和Sender（发送线程）。在主线程中由KafkaProducer创建消息，然后通过可能的拦截器、序列化器和分区器的作用之后缓存到消息累加器（RecordAccumulator,也称为消息收集器）中。Sender线程负责从RecordAccumulator中获取消息并将其发送到Kafka中。</p><p>RecordAccumulator 主要用来缓存消息以便Sender线程可以批量发送，进而减少网络传输的资源消耗以提升性能。</p><p>主线程中发送过来的消息都会被追加到RecordAccumulator的某个双端队列（Deque）中，在RecordAccumulator的内部为每个分区都维护了一个双端队列，队列中的内容就是ProducerBatch,即Deque。消息写入缓存时，追加到双端队列的尾部；Sender读取消息时，从双端队列的头部读取。</p><p>消息在网络上都是以字节(Byte)的形式传输的，在发送之前需要创建一块内存区域来保存对应的消息。在Kafka生产者客户端中，通过java.io.ByteBuffer实现消息内存的创建和释放。不过频繁的创建和释放是比较消耗资源的，在RecordAccumulator的内部还有一个BufferPool，它主要用来实现ByteBuffer的复用，以实现缓存的高效利用。</p><p>\4. ack应答机制</p><p>对于某些不太重要的数据，对数据的可靠性要求不是很高，能够容忍数据的少量丢失，<br>所以没必要等 ISR 中的 follower 全部接收成功。</p><p>所以 Kafka 为用户提供了三种可靠性级别，用户根据对可靠性和延迟的要求进行权衡，选择以下的配置。</p><p>acks &#x3D; 0：生产者只负责发消息，不管Leader 和Follower 是否完成落盘就会发送ack 。这样能够最大降低延迟，但当Leader还未落盘时发生故障就会造成数据丢失。</p><p>acks &#x3D; 1：Leader将数据落盘后，不管Follower 是否落盘就会发送ack 。这样可以保证Leader节点内有一份数据，但当Follower还未同步时Leader发生故障就会造成数据丢失。</p><p>acks &#x3D; -1(all)：生产者等待Leader 和ISR 集合内的所有Follower 都完成同步才会发送ack 。但当Follower 同步完之后，broker发送ack之前，Leader发生故障时，此时会重新从ISR内选举一个新的Leader，此时由于生产者没收到ack，于是生产者会重新发消息给新的Leader，此时就会造成数据重复。</p><p><strong>四、</strong><em><strong>*消费者API*</strong></em></p><p>一个正常的消费逻辑需要具备以下几个步骤: </p><p>(1)配置消费者客户端参数</p><p>(2)创建相应的消费者实例; </p><p>(3)订阅主题; </p><p>(4)拉取消息并消费; </p><p>(5)提交消费位移 offset;</p><p>(6)关闭消费者实例。</p><p>\1. subscribe 有如下重载方法: </p><p>public void subscribe(Collection<String> topics,ConsumerRebalanceListener listener)</String></p><p>public void subscribe(Collection<String> topics)</String></p><p>public void subscribe(Pattern pattern, ConsumerRebalanceListener listener) </p><p>public void subscribe(Pattern pattern)</p><p>\2. 指定集合方式订阅主题</p><p>consumer.subscribe(Arrays.asList(topic1)); </p><p>consumer subscribe(Arrays.asList(topic2))</p><p>\3. 正则方式订阅主题</p><p>如果消费者采用的是正则表达式的方式(subscribe(Pattern))订阅, 在之后的过程中,如果有人又创建了新的主题,并且主题名字与正表达式相匹配,那么这个消费者就可以消费到新添加的主题中的消息。如果应用程序需要消费多个主题,并且可以处理不同的类型,那么这种订阅方式就很有效。</p><p>\4. assign 订阅主题</p><p>这个方法只接受参数 partitions,用来指定需要订阅的分区集合</p><p>\5. subscribe 与 assign 的区别</p><p>(1)通过 subscribe()方法订阅主题具有消费者自动再均衡功能 ; </p><p>在多个消费者的情况下可以根据分区分配策略来自动分配各个消费者与分区的关系。 </p><p>当消费组的消费者增加或减少时,分区分配关系会自动调整,以实现消费负载均衡及故障自动转移。</p><p>(2)assign() 方法订阅分区时,是不具备消费者自动均衡的功能的; </p><p>其实这一点从 assign()方法参数可以看出端倪,两种类型 subscribe()都有 ConsumerRebalanceListener 类型参数的方法,而 assign()方法却没有。</p><p>\6. 消息的消费模式</p><p>Kafka 中的消费是基于拉取模式的。消息的消费一般有两种模式:推送模式和拉取模式。</p><p>推模式是服务端主动将消息推送给消费者,而拉模式是消费者主动向服务端发起请求来拉取消息</p><p>Kafka 中的消息消费是一个不断轮询的过程,消费者所要做的就是重复地调用 poll() 方法, poll() 方法返回的是所订阅的主题(分区)上的一组消息。</p><p>\7. 指定位移消费</p><p>seek() 方法:从特定的位移处开始拉取消息</p><p>\8. 再均衡监听器</p><p>一个消费组中,一旦有消费者的增减发生,会触发消费者组的 rebalance 再均衡; </p><p>如果 A 消费者消费掉的一批消息还没来得及提交 offset, 而它所负责的分区在 rebalance 中转移给了 B 消费者,则有可能发生数据的重复消费处理。此情形下,可以通过再均衡监听器做一定程度的补救;</p><p>\9. 自动位移提交</p><p>Kafka 消费的编程逻辑中位移提交是一大难点,自动提交消费位移的方式非常简便,它免去了复杂的位移提交逻辑,让编码更简洁。但随之而来的是重复消费和消息丢失的问题。</p><p>(1)重复消费</p><p>假设刚刚提交完一次消费位移,然后拉取一批消息进行消费,在下一次自动提交消费位移之前,消费者崩溃了,那么又得从上一次位移提交的地方重新开始消费,这样便发生了重复消费的现象(对于再均衡的情况同样适用)。我们可以通过减小位移提交的时间间隔来减小重复消息的窗口大小,但这样并不能避免重复消费的发送,而且也会使位移提交更加频繁。</p><p>(2)丢失消息</p><p>拉取线程不断地拉取消息并存入本地缓存, 比如在 BlockingQueue 中, 另一个处理线程从缓存中读取消息并进行相应的逻辑处理</p><p>\10. 新建ConsumerDemo，ConsumerDemo1，ConsumerTask，ConsumerDemo2，ConsumerSeekOffset类</p><p><img src="/2022/06/12/six/6.png" alt="img"> </p><p><strong>五、</strong><em><strong>*Topic管理API*</strong></em></p><p>KafkaAdminClient 不仅可以用来管理 broker、配置和 ACL (Access Control List),还可用来管理主题)它提供了以下方法:</p><p><img src="/2022/06/12/six/7.png" alt="img"> </p><p>\1. 新建KafkAdminDemo，CallableDemo类</p><p><img src="/2022/06/12/six/8.png" alt="img"> </p><p><img src="/2022/06/12/six/9.png" alt="img"></p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;&lt;strong&gt;三、&lt;/strong&gt;&lt;em&gt;&lt;strong&gt;*生产者API*&lt;/strong&gt;&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;一个正常的生产逻辑需要具备以下几个步骤&lt;/p&gt;
+&lt;p&gt;(1)配置生产者客户端参数及创建相应的生产者实例&lt;/p&gt;
+&lt;p&gt;(2)构建待发送的消息&lt;/p&gt;
+&lt;</summary>
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Kafka命令行操作</title>
+    <link href="http://example.com/2022/06/12/five/"/>
+    <id>http://example.com/2022/06/12/five/</id>
+    <published>2022-06-12T02:38:53.000Z</published>
+    <updated>2022-06-16T02:51:21.992Z</updated>
+    
+    <content type="html"><![CDATA[<p><strong>二、</strong><em><strong>*Kafka命令行操作*</strong></em></p><p>Kafka中提供了许多命令行工具(位于$KAFKA HOME&#x2F;bin 目录下)用于管理集群的变更。</p><table><thead><tr><th>kafka-configs.sh</th><th>用于配置管理</th></tr></thead><tbody><tr><td>kafka-console-consumer.sh</td><td>用于消费消息</td></tr><tr><td>kafka-console-producer.sh</td><td>用于生产消息</td></tr><tr><td>kafka-console-perf-test.sh</td><td>用于测试消费性能</td></tr><tr><td>kafka-topics.sh</td><td>用于管理主题</td></tr><tr><td>kafka-dump-log.sh</td><td>用于查看日志内容</td></tr><tr><td>kafka-server-stop.sh</td><td>用于关闭Kafka服务</td></tr><tr><td>kafka-preferred-replica-election.sh</td><td>用于优先副本的选举</td></tr><tr><td>kafka-server-start.sh</td><td>用于启动Kafka服务</td></tr><tr><td>kafka-producer-perf-test.sh</td><td>用于测试生产性能</td></tr><tr><td>kafka-reassign-partitions.sh</td><td>用于分区重分配</td></tr></tbody></table><p>\1. 创建topic</p><p>kafka-topics.sh –create –topic test1 –partitions 1 –replication-factor 2 –zookeeper master:2181</p><p><img src="/2022/06/12/five/1.png" alt="img"> </p><p>\2. 删除topic</p><p>kafka-topics.sh –delete –topic test1 –zookeeper master:2181</p><p><img src="/2022/06/12/five/2.png" alt="img"> </p><p>\3. 查看topic</p><p> kafka-topics.sh –list –zookeeper master:2181 _consumer_offsets</p><p><img src="/2022/06/12/five/3.png" alt="img"> </p><p>\4. 增加分区数</p><p>bin&#x2F;kafka-topics.sh –alter –topic tpc_1 –partitions 3 –zookeeper master:2181</p><p>Kafka 只支持增加分区,不支持减少分区</p><p><em><strong>*原因是:减少分区,代价太大(数据的转移,日志段拼接合并)*</strong></em> </p><p>\5. 动态配置topic参数</p><p>–添加、修改配置参数（开启压缩发送传输种提高kafka消息吞吐量的有效办法(‘gzip’, ‘snappy’, ‘lz4’, ‘zstd’)）</p><p>bin&#x2F;kafka-configs.sh –zookeeper master:2181 –entity-type topics –entity-name tpc_1 –alter –add-config compression.type&#x3D;gzip </p><p>–删除配置参数</p><p>bin&#x2F;kafka-configs.sh –zookeeper master:2181 –entity-type topics –entity-name tpc_1 –alter –delete-config compression.type</p><p>\6. Kafka命令行生产者与消费者操作</p><p>–生产者:kafka-console-producer</p><p>bin&#x2F;kafka-console-producer.sh –broker-list master:9092, slave1:9092, slave2:9092 –topic tpc_1</p><p><img src="/2022/06/12/five/4.png" alt="img"> </p><p>–消费者:kafka-console-consumer</p><p>bin&#x2F;kafka-console-consumer.sh –bootstrap-server master:9092, slave1:9092, slave2:9092 –topic tpc_1 –from-beginning</p><p><img src="/2022/06/12/five/5.png" alt="img"> </p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;&lt;strong&gt;二、&lt;/strong&gt;&lt;em&gt;&lt;strong&gt;*Kafka命令行操作*&lt;/strong&gt;&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;Kafka中提供了许多命令行工具(位于$KAFKA HOME&amp;#x2F;bin 目录下)用于管理集群的变更。&lt;/p&gt;
+&lt;table&gt;
+&lt;thea</summary>
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Kafka环境配置</title>
+    <link href="http://example.com/2022/06/12/four/"/>
+    <id>http://example.com/2022/06/12/four/</id>
+    <published>2022-06-12T02:13:29.000Z</published>
+    <updated>2022-06-16T02:35:07.946Z</updated>
+    
+    <content type="html"><![CDATA[<p><strong>一、</strong><em><strong>*Kafka环境配置*</strong></em></p><p>1、上传安装包到&#x2F;export&#x2F;servers&#x2F;路径并解压</p><p>cd &#x2F;export&#x2F;servers</p><p>rz</p><p><img src="/2022/06/12/four/1.png" alt="img"> </p><p>tar -zxvf kafka_2.11-2.0.0.tgz</p><p>2、修改配置文件</p><p>（1）进入配置文件目录</p><p> cd &#x2F;export&#x2F;servers&#x2F;kafka_2.11-2.0.0&#x2F;config</p><p>（2）编辑配置文件</p><p> –vi server.properties</p><p>broker.id&#x3D;0 从0开始，依次增加（0,1,2,3,4…），每台不能重复</p><p>将Listeners &#x3D; plaintext:&#x2F;&#x2F;:9092改成：Listeners &#x3D; plaintext:&#x2F;&#x2F;master:9092</p><p><img src="/2022/06/12/four/2.png" alt="img"> </p><p>#数据存储的目录</p><p>log.dirs&#x3D;&#x2F;export&#x2F;servers&#x2F;data&#x2F;kafka-logs </p><p>#默认分区数</p><p>Num.partitions &#x3D; 1</p><p><img src="/2022/06/12/four/3.png" alt="img"> </p><p>—-Log retention policy—-</p><p>数据保留策略 168&#x2F;24&#x3D;7，1073741824&#x2F;1024&#x3D;1GB，300000ms &#x3D; 300s &#x3D; 5min（超过了删掉）</p><p><img src="/2022/06/12/four/4.png" alt="img"> </p><p>#指定 zk 集群地址</p><p>zookeeper.connect&#x3D;node1:2181,node2:2181,node3:2181</p><p><img src="/2022/06/12/four/5.png" alt="img"> </p><p>3、分发kafka</p><p>cd &#x2F;export&#x2F;servers&#x2F;</p><p>scp -r &#x2F;export&#x2F;servers&#x2F;kafka_2.11-2.0.0&#x2F; slave1:$PWD</p><p>scp -r &#x2F;export&#x2F;servers&#x2F;kafka_2.11-2.0.0&#x2F; slave2:$PWD</p><p>（注意：分发完后需修改slave1，slave2中的server.properties文件）</p><p>slave1</p><p><img src="/2022/06/12/four/6.png" alt="img"> </p><p><img src="/2022/06/12/four/7.png" alt="img"> </p><p>slave2</p><p><img src="/2022/06/12/four/8.png" alt="img"> </p><p><img src="/2022/06/12/four/9.png" alt="img"> </p><p>4、配置环境变量</p><p>  vi &#x2F;etc&#x2F;profile（将以下内容添加到profile文件中，三台虚拟机都需要） </p><p>export KAFKA_HOME&#x3D;&#x2F;export&#x2F;servers&#x2F;kafka </p><p>export PATH&#x3D;$PATH:$KAFKA_HOME&#x2F;bin </p><p>#重新加载环境变量</p><p>source &#x2F;etc&#x2F;profile </p><p>\1. 启动kafka</p><p>  <img src="/2022/06/12/four/10.png" alt="img"></p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;&lt;strong&gt;一、&lt;/strong&gt;&lt;em&gt;&lt;strong&gt;*Kafka环境配置*&lt;/strong&gt;&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;1、上传安装包到&amp;#x2F;export&amp;#x2F;servers&amp;#x2F;路径并解压&lt;/p&gt;
+&lt;p&gt;cd &amp;#x2F;export&amp;#x2F;</summary>
+      
+    
+    
+    
+    
+  </entry>
   
   <entry>
     <title>Eagle部署及各项功能</title>

@@ -3,21 +3,29 @@
 <head>
     <meta charset="utf-8">
     
-    <title>Categories | LF的博客</title>
+    <title>Kafka命令行操作 | LF的博客</title>
     
     
-        <meta name="keywords" content="Categories" />
+        <meta name="keywords" content="Kafka命令行操作" />
     
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <meta property="og:type" content="website">
-<meta property="og:title" content="Categories">
-<meta property="og:url" content="http://example.com/categories/index.html">
+    <meta name="description" content="二、*Kafka命令行操作* Kafka中提供了许多命令行工具(位于$KAFKA HOME&#x2F;bin 目录下)用于管理集群的变更。    kafka-configs.sh 用于配置管理    kafka-console-consumer.sh 用于消费消息   kafka-console-producer.sh 用于生产消息   kafka-console-perf-test.sh 用于测">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Kafka命令行操作">
+<meta property="og:url" content="http://example.com/2022/06/12/five/index.html">
 <meta property="og:site_name" content="LF的博客">
+<meta property="og:description" content="二、*Kafka命令行操作* Kafka中提供了许多命令行工具(位于$KAFKA HOME&#x2F;bin 目录下)用于管理集群的变更。    kafka-configs.sh 用于配置管理    kafka-console-consumer.sh 用于消费消息   kafka-console-producer.sh 用于生产消息   kafka-console-perf-test.sh 用于测">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2022-05-30T00:42:03.970Z">
-<meta property="article:modified_time" content="2022-05-30T00:42:03.970Z">
+<meta property="og:image" content="http://example.com/2022/06/12/five/1.png">
+<meta property="og:image" content="http://example.com/2022/06/12/five/2.png">
+<meta property="og:image" content="http://example.com/2022/06/12/five/3.png">
+<meta property="og:image" content="http://example.com/2022/06/12/five/4.png">
+<meta property="og:image" content="http://example.com/2022/06/12/five/5.png">
+<meta property="article:published_time" content="2022-06-12T02:38:53.000Z">
+<meta property="article:modified_time" content="2022-06-16T02:51:21.992Z">
 <meta property="article:author" content="LF的博客">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/2022/06/12/five/1.png">
     
 
     
@@ -237,14 +245,181 @@
     <div id="toTop" class="fa fa-angle-up"></div>
 </aside>
             
-            <section id="main"><section class="layout-wrap">
-    <div class="layout-title">
-        <span>Categories</span>
-    </div>
-    <div class="layout-wrap-inner list-categories">
+            <section id="main"><article id="post-five" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
         
+        
+            <header class="article-header">
+                
+                    <div class="article-meta">
+                        
+                        
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/2022/06/12/five/">
+            <time datetime="2022-06-12T02:38:53.000Z" itemprop="datePublished">2022-06-12</time>
+        </a>
     </div>
-</section></section>
+
+
+                        
+                            <i class="fa fa-bar-chart"></i>
+                            <span id="busuanzi_container_site_pv"><span id="busuanzi_value_page_pv"></span></span>    
+                        
+                        
+                            <div class="article-meta-button">
+                                <a target="_blank" rel="noopener" href='https://github.com/LF/Wiki-site/raw/writing/source/_posts/five.md'> Source </a>
+                            </div>
+                            <div class="article-meta-button">
+                                <a target="_blank" rel="noopener" href='https://github.com/LF/Wiki-site/edit/writing/source/_posts/five.md'> Edit </a>
+                            </div>
+                            <div class="article-meta-button">
+                                <a target="_blank" rel="noopener" href='https://github.com/LF/Wiki-site/commits/writing/source/_posts/five.md'> History </a>
+                            </div>
+                        
+                    </div>
+                
+                
+    
+        <h1 class="article-title" itemprop="name">
+            Kafka命令行操作
+        </h1>
+    
+
+            </header>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+        
+            
+                <div id="toc" class="toc-article">
+                <strong class="toc-title">文章目录</strong>
+                    
+                </div>
+            
+        
+        
+            <p><strong>二、</strong><em><strong>*Kafka命令行操作*</strong></em></p>
+<p>Kafka中提供了许多命令行工具(位于$KAFKA HOME&#x2F;bin 目录下)用于管理集群的变更。</p>
+<table>
+<thead>
+<tr>
+<th>kafka-configs.sh</th>
+<th>用于配置管理</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>kafka-console-consumer.sh</td>
+<td>用于消费消息</td>
+</tr>
+<tr>
+<td>kafka-console-producer.sh</td>
+<td>用于生产消息</td>
+</tr>
+<tr>
+<td>kafka-console-perf-test.sh</td>
+<td>用于测试消费性能</td>
+</tr>
+<tr>
+<td>kafka-topics.sh</td>
+<td>用于管理主题</td>
+</tr>
+<tr>
+<td>kafka-dump-log.sh</td>
+<td>用于查看日志内容</td>
+</tr>
+<tr>
+<td>kafka-server-stop.sh</td>
+<td>用于关闭Kafka服务</td>
+</tr>
+<tr>
+<td>kafka-preferred-replica-election.sh</td>
+<td>用于优先副本的选举</td>
+</tr>
+<tr>
+<td>kafka-server-start.sh</td>
+<td>用于启动Kafka服务</td>
+</tr>
+<tr>
+<td>kafka-producer-perf-test.sh</td>
+<td>用于测试生产性能</td>
+</tr>
+<tr>
+<td>kafka-reassign-partitions.sh</td>
+<td>用于分区重分配</td>
+</tr>
+</tbody></table>
+<p>\1. 创建topic</p>
+<p>kafka-topics.sh –create –topic test1 –partitions 1 –replication-factor 2 –zookeeper master:2181</p>
+<p><img src="/2022/06/12/five/1.png" alt="img"> </p>
+<p>\2. 删除topic</p>
+<p>kafka-topics.sh –delete –topic test1 –zookeeper master:2181</p>
+<p><img src="/2022/06/12/five/2.png" alt="img"> </p>
+<p>\3. 查看topic</p>
+<p> kafka-topics.sh –list –zookeeper master:2181 _consumer_offsets</p>
+<p><img src="/2022/06/12/five/3.png" alt="img"> </p>
+<p>\4. 增加分区数</p>
+<p>bin&#x2F;kafka-topics.sh –alter –topic tpc_1 –partitions 3 –zookeeper master:2181</p>
+<p>Kafka 只支持增加分区,不支持减少分区</p>
+<p><em><strong>*原因是:减少分区,代价太大(数据的转移,日志段拼接合并)*</strong></em> </p>
+<p>\5. 动态配置topic参数</p>
+<p>–添加、修改配置参数（开启压缩发送传输种提高kafka消息吞吐量的有效办法(‘gzip’, ‘snappy’, ‘lz4’, ‘zstd’)）</p>
+<p>bin&#x2F;kafka-configs.sh –zookeeper master:2181 –entity-type topics –entity-name tpc_1 –alter –add-config compression.type&#x3D;gzip </p>
+<p>–删除配置参数</p>
+<p>bin&#x2F;kafka-configs.sh –zookeeper master:2181 –entity-type topics –entity-name tpc_1 –alter –delete-config compression.type</p>
+<p>\6. Kafka命令行生产者与消费者操作</p>
+<p>–生产者:kafka-console-producer</p>
+<p>bin&#x2F;kafka-console-producer.sh –broker-list master:9092, slave1:9092, slave2:9092 –topic tpc_1</p>
+<p><img src="/2022/06/12/five/4.png" alt="img"> </p>
+<p>–消费者:kafka-console-consumer</p>
+<p>bin&#x2F;kafka-console-consumer.sh –bootstrap-server master:9092, slave1:9092, slave2:9092 –topic tpc_1 –from-beginning</p>
+<p><img src="/2022/06/12/five/5.png" alt="img"> </p>
+
+            </div>
+        
+        <footer class="article-footer">
+        </footer>
+    </div>
+</article>
+
+
+    
+<nav id="article-nav">
+    
+        <a href="/2022/06/12/six/" id="article-nav-newer" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">上一篇</strong>
+            <div class="article-nav-title">
+                
+                    kafka API使用方法
+                
+            </div>
+        </a>
+    
+    
+        <a href="/2022/06/12/four/" id="article-nav-older" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">下一篇</strong>
+            <div class="article-nav-title">Kafka环境配置</div>
+        </a>
+    
+</nav>
+
+
+
+
+
+    
+    
+
+
+
+
+<!-- baidu url auto push script -->
+<script type="text/javascript">
+    !function(){var e=/([http|https]:\/\/[a-zA-Z0-9\_\.]+\.baidu\.com)/gi,r=window.location.href,o=document.referrer;if(!e.test(r)){var n="//api.share.baidu.com/s.gif";o?(n+="?r="+encodeURIComponent(document.referrer),r&&(n+="&l="+r)):r&&(n+="?l="+r);var t=new Image;t.src=n}}(window);
+</script>     
+</section>
         </div>
         <footer id="footer">
     <div class="outer">
